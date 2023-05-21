@@ -1,0 +1,29 @@
+---
+import { FlightModel, StatusModel, contentTypes } from "../models";
+import dayjs from 'dayjs'
+
+interface Props {
+    statuses: StatusModel[]
+}
+const { statuses } = Astro.props
+
+const status = statuses
+        .sort((f1, f2) => dayjs(f1.system.lastModified).isAfter(dayjs(f2.system.lastModified)) ? -1 : 1)[0]
+
+const getColorBySeverity = (severity: string): string => {
+    switch (severity){
+        case "info":
+            return "green"
+        case "problem":
+            return "yellow"
+        case "cancellation":
+            return "red"
+    }
+
+    return ""
+}
+
+---
+
+{!status && <td></td>}
+{status && <td class={getColorBySeverity(status.elements.severity.value[0].codename)}>{status.elements.message.value ? status.elements.message.value : status.elements.message.value}</td>}

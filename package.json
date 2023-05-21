@@ -1,0 +1,36 @@
+{
+	"name": "certain-cycle",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"regenerate:models": "ts-node --esm ./src/scripts/generate-models.ts"
+	},
+	"dependencies": {
+		"@astrojs/netlify": "^2.2.2",
+		"@astrojs/react": "^2.2.0",
+		"@kontent-ai/delivery-sdk": "^14.0.1",
+		"@kontent-ai/rich-text-resolver": "^0.0.3",
+		"@portabletext/react": "^3.0.0",
+		"@portabletext/to-html": "^2.0.0",
+		"@rshackleton/astro-portabletext": "^0.1.0",
+		"@types/react": "^18.2.6",
+		"@types/react-dom": "^18.2.4",
+		"astro": "^2.3.4",
+		"dayjs": "^1.11.7",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@kontent-ai/model-generator": "^5.10.0",
+		"dotenv": "^16.0.3",
+		"prettier": "^2.8.4",
+		"prettier-plugin-astro": "^0.8.0",
+		"sass": "^1.58.0",
+		"ts-node": "^10.9.1"
+	}
+}

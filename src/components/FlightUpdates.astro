@@ -1,0 +1,92 @@
+---
+import { deliveryClient } from "../lib/kontent";
+import { FlightModel, StatusModel, contentTypes } from "../models";
+import dayjs from 'dayjs'
+import FlightStatus from './FlightStatus.astro';
+
+const flightUpdates = await deliveryClient
+    .items<FlightModel>()
+    .type(contentTypes.flight.codename)
+    .depthParameter(2)
+    .toPromise()
+
+const getFlightStatus = (flight: FlightModel): StatusModel => {
+    if (flight.elements.statuses.linkedItems.length === 0){
+        return null
+    }
+    
+    return flight.elements.statuses
+        .linkedItems
+        .sort((f1, f2) => dayjs(f1.system.lastModified).isAfter(dayjs(f2.system.lastModified)) ? -1 : 1)[0]
+}
+
+---
+
+<script>
+    window.setTimeout(() => window.location.reload(), 30000);
+</script>
+
+
+<div class="container">
+    <h1>Flight updates</h1>
+    <hr />
+    <p>This table shows latest flight data.</p>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Ident</th>
+            <th>Aircraft</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Departure</th>
+            <th>Estimated arrival</th>
+            <th>Note</th>
+        </tr>
+        {flightUpdates.data.items.map(flight => (
+            <tr>
+                <td>{flight.system.name}</td>    
+                <td>{flight.elements.aircraft.linkedItems[0].elements.type.value[0].name}</td>
+                <td>{flight.elements.origin.linkedItems[0].elements.title.value}</td>
+                <td>{flight.elements.destination.linkedItems[0].elements.title.value}</td>
+                <td>{dayjs(flight.elements.departure.value).format("DD/MM/YYYY H:mm")}</td>
+                <td>{dayjs(flight.elements.arrival.value).format("DD/MM/YYYY H:mm")}</td>
+                <FlightStatus statuses={flight.elements.statuses.linkedItems} />
+            </tr>
+        ))}
+    </table>
+</div>
+
+<style lang="sass" is:global>
+    table
+        text-align: left
+        width: 100%
+        color: #444
+
+    tr:nth-child(odd)
+        background: #ddd
+
+    td, th
+        padding: 10px
+
+    .green
+        background: lightgreen
+    
+    .yellow
+        background: yellow
+    
+    .grey
+        background: #ccc
+</style>
+
+<style lang="sass">
+    h1
+        text-align: left
+        font-size: 3rem
+        text-transform: none
+        margin-left: 0
+
+    p
+        color: #6b6b6b
+        text-align: left
+        font-family: 'Roboto', sans-serif
+
+</style>

@@ -1,0 +1,10 @@
+---
+import { contentTypes } from "../models";
+import { IContentItem, IContentItemElements } from "@kontent-ai/delivery-sdk"
+import CTA from "./CTA.astro";
+
+const linkedItem = Astro.props.portableText.global.context[Astro.props.portableText.value.component._ref] as IContentItem<IContentItemElements>
+
+---
+
+{linkedItem.system.type === contentTypes._component__cta.codename && <CTA />}

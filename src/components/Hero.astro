@@ -1,0 +1,109 @@
+---
+---
+
+<div class="hero">
+    <div class="video">
+        <i></i>
+        <video loop="" muted="" autoplay="" poster="/img/web.jpg"><source src="/landing.mp4" type="video/mp4"></video>
+    </div>
+    <div class="content">
+        <h1>Our planes, your destinations</h1>
+        <hr />
+        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation urper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie conseq</p>
+        <nav>
+            <a href="#" class="selected">.</a>
+            <a href="#">.</a>
+            <a href="#">.</a>
+        </nav>
+        <a class="down" href="#">▼</a>
+    </div>
+</div>
+
+<style lang="sass">
+.hero
+    width: 100%
+    padding-top: 56.25%
+    position: relative
+    margin-bottom: -100px
+    
+.video
+    width: 100%
+    height: 100%
+    position: absolute
+    top: -120px
+    left: 0
+    > i
+        display: block
+        position: absolute
+        top: 0
+        width: 100%
+        height: 100%
+        background: rgba(0,0,0,.4)
+        box-shadow: 0 0 500px rgba(0,0,0,0.5) inset
+
+    > video
+        width: 100%
+
+.content
+    width: 100%
+    height: 100%
+    position: absolute
+    display: flex
+    flex-direction: column
+    justify-content: center
+    top: -120px
+    left: 0
+    font-family: 'Roboto'
+    color: #eee
+
+    h1
+        text-transform: uppercase
+        font-size: 5rem
+        font-weight: 700
+        margin: 2rem
+
+    p
+        font-size: .9rem
+        margin: 2rem
+
+    hr
+        width: 20%
+        color: #eee
+
+    .down
+        position: absolute
+        bottom: 100px
+        left: calc(50% - 30px)
+        border: 1px solid #eee
+        width: 60px
+        height: 60px
+        line-height: 60px
+        color: #eee
+        text-decoration: none
+        font-size: 2rem
+        transition: all .3s
+
+        &:hover
+            background: #eee
+            color: #111
+
+nav a
+    display: inline-block
+    border: 1px solid #eee
+    width: 20px
+    height: 20px
+    line-height: 8px
+    margin: 0 .2rem
+    padding: 0
+    font-size: 1.5rem
+    color: transparent
+    transition: all .3s
+
+    &:hover
+        text-decoration: none
+        color: #eee
+
+    &.selected
+        color: #eee
+
+</style>

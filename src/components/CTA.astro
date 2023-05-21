@@ -1,0 +1,24 @@
+---
+import { ComponentCtaModel, FlightModel, StatusModel, contentTypes } from "../models";
+
+const data = Astro.props.portableText.global.context[Astro.props.portableText.value.component._ref] as ComponentCtaModel
+
+---
+
+<a href={data.elements.url.value}>{data.elements.text.value}</a>
+
+<style lang="sass">
+a
+    color: #333
+    padding: 10px
+    margin: 10px
+    display: inline-block
+    border: 1px solid #333
+    text-decoration: none
+    transition: all .2s
+
+    &:hover
+        color: #fff
+        background: #000
+
+</style>

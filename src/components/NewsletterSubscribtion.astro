@@ -1,0 +1,61 @@
+---
+
+---
+
+<div class="newsletter">
+    <div class="container">
+        <form action="#">
+            <input type="text" placeholder="Enter your email" />
+            <input type="submit" value="Subscribe" />
+        </form>
+    </div>
+</div>
+
+<style lang="sass">
+.newsletter
+    background: #000
+    font-family: 'Roboto'
+    padding: 40px
+
+form
+    display: flex
+    gap: 60px
+
+input[type=text]
+    color: #fff
+    background: #000
+    font-size: 4rem
+    font-weight: 700
+    text-transform: uppercase
+    border: 0
+    transition: border linear .2s,box-shadow linear .2s
+    padding: 0 10px
+
+    &:focus
+        outline: 0
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6)
+
+    &::placeholder
+        color: #fff
+        opacity: 1
+
+
+input[type=submit]
+    color: #fff
+    background: #000
+    font-size: 1.4rem
+    font-weight: 700
+    flex-grow: 1
+    border: 1px solid #fff
+    transition: all .2s
+    font-family: 'Roboto Condensed', sans-serif
+
+    &:hover
+        background: #fff
+        color: #000
+        cursor: pointer
+
+
+
+
+</style>
