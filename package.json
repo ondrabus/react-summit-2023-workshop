@@ -7,8 +7,7 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro",
-		"regenerate:models": "ts-node --esm ./src/scripts/generate-models.ts"
+		"astro": "astro"
 	},
 	"dependencies": {
 		"@astrojs/netlify": "^2.2.2",

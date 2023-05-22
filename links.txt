@@ -1,0 +1,2 @@
+Kontent.ai registration -> https://app.kontent.ai/sign-up
+KontentAir CLI -> https://github.com/ondrabus/kontent-air-cli
