@@ -1,2 +1,4 @@
 Kontent.ai registration -> https://app.kontent.ai/sign-up
 KontentAir CLI -> https://github.com/ondrabus/kontent-air-cli
+Rich text resolver repository -> https://github.com/kontent-ai/rich-text-resolver-js
+

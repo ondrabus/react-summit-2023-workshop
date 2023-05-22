@@ -1,6 +1,13 @@
 ---
+import Hero from '../components/Hero.astro';
+import Listing from '../components/Listing.astro';
+import NewsletterSubscription from '../components/NewsletterSubscription.astro';
+import TextBlock from '../components/TextBlock.astro';
 import Layout from '../layouts/Layout.astro'
 ---
 <Layout title="Hello Astro" isHomepage={true}>
-	Hello world
+	<Hero />
+	<TextBlock />
+	<NewsletterSubscription />
+	<Listing />
 </Layout>
