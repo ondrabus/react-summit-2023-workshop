@@ -1,25 +1,4 @@
 ---
-import { deliveryClient } from "../lib/kontent";
-import { FlightModel, StatusModel, contentTypes } from "../models";
-import dayjs from 'dayjs'
-import FlightStatus from './FlightStatus.astro';
-
-const flightUpdates = await deliveryClient
-    .items<FlightModel>()
-    .type(contentTypes.flight.codename)
-    .depthParameter(2)
-    .toPromise()
-
-const getFlightStatus = (flight: FlightModel): StatusModel => {
-    if (flight.elements.statuses.linkedItems.length === 0){
-        return null
-    }
-    
-    return flight.elements.statuses
-        .linkedItems
-        .sort((f1, f2) => dayjs(f1.system.lastModified).isAfter(dayjs(f2.system.lastModified)) ? -1 : 1)[0]
-}
-
 ---
 
 <script>
@@ -41,17 +20,15 @@ const getFlightStatus = (flight: FlightModel): StatusModel => {
             <th>Estimated arrival</th>
             <th>Note</th>
         </tr>
-        {flightUpdates.data.items.map(flight => (
-            <tr>
-                <td>{flight.system.name}</td>    
-                <td>{flight.elements.aircraft.linkedItems[0].elements.type.value[0].name}</td>
-                <td>{flight.elements.origin.linkedItems[0].elements.title.value}</td>
-                <td>{flight.elements.destination.linkedItems[0].elements.title.value}</td>
-                <td>{dayjs(flight.elements.departure.value).format("DD/MM/YYYY H:mm")}</td>
-                <td>{dayjs(flight.elements.arrival.value).format("DD/MM/YYYY H:mm")}</td>
-                <FlightStatus statuses={flight.elements.statuses.linkedItems} />
-            </tr>
-        ))}
+        <tr>
+            <td>FR7301</td>    
+            <td>OK-API</td>
+            <td>London Stansted</td>
+            <td>Paris CDG</td>
+            <td>10/05/2023 17:35</td>
+            <td>10/05/2023 18:55</td>
+            <td class="green">Proceed to boarding gate B15</td>
+        </tr>
     </table>
 </div>
 

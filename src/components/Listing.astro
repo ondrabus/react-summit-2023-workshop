@@ -1,45 +1,26 @@
 ---
-import { PortableText } from "@rshackleton/astro-portabletext"
-import { deliveryClient } from "../lib/kontent";
-import { DestinationModel, contentTypes } from "../models";
-import { nodeParse, transformToPortableText } from "@kontent-ai/rich-text-resolver"
-import CTA from "./CTA.astro";
-import { IContentItem, IContentItemElements } from "@kontent-ai/delivery-sdk";
-import { PortableTextAstroContext } from "@rshackleton/astro-portabletext/src/ptTypes";
 
-const destinations = await deliveryClient
-    .items<DestinationModel>()
-    .type(contentTypes.destination.codename)
-    .depthParameter(2)
-    .toPromise()
-
-const transformLinkedItemsToGlobalContext = (linkedItems: IContentItem<IContentItemElements>[]): PortableTextAstroContext => 
-    linkedItems.reduce((obj, item) => {
-        obj[item.system.codename] = item;
-        return obj;
-    }, {})
-    
 ---
 
 <div class="container">
     <h1>Our destinations</h1>
     <hr />
     <ul>
-        {destinations.data.items.map(destination => (
-            <li>
-                <img src={destination.elements.photo.value[0].url} alt={destination.elements.photo.value[0].description} />
-                <h2>{destination.elements.title.value}</h2>
-                <PortableText
-                    components={{
-                        types: {
-                            ["component"]: CTA,
-                        }
-                    }}
-                    context={transformLinkedItemsToGlobalContext(destination.elements.text.linkedItems)}
-                    value={transformToPortableText(nodeParse(destination.elements.text.value))}
-                    />
-            </li>
-        ))}
+        <li>
+            <img src="london.jpg" alt="" />
+            <h2>London</h2>
+            <p>London is the capital of England and one of the world's most diverse and cosmopolitan cities, known for its iconic landmarks, rich history, and vibrant cultural scene.</p>
+        </li>
+        <li>
+            <img src="san-francisco.jpg" alt="" />
+            <h2>San Francisco</h2>
+            <p>San Francisco is a vibrant city located in northern California, USA, known for its iconic landmarks, hilly terrain, diverse culture, and prominent role as a hub for innovation and technology.</p>
+        </li>
+        <li>
+            <img src="stockholm.jpg" alt="" />
+            <h2>Stockholm</h2>
+            <p>Stockholm is the capital of Sweden and a leading tech hub, known for its vibrant startup scene, innovative spirit, and high quality of life.</p>
+        </li>
     </ul>
 
 </div>
