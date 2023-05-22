@@ -1,11 +1,14 @@
 ---
-import { ComponentCtaModel, FlightModel, StatusModel, contentTypes } from "../models";
+import { ComponentCtaModel } from "../models";
 
-const data = Astro.props.portableText.global.context[Astro.props.portableText.value.component._ref] as ComponentCtaModel
+interface Props {
+    data: ComponentCtaModel
+}
+const {url, text} = Astro.props.data.elements
 
 ---
 
-<a href={data.elements.url.value}>{data.elements.text.value}</a>
+<a href={url.value}>{text.value}</a>
 
 <style lang="sass">
 a

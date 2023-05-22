@@ -7,10 +7,14 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"regenerate:models": "ts-node --esm ./src/scripts/generate-models.ts"
 	},
 	"dependencies": {
 		"@astrojs/netlify": "^2.2.2",
+		"@kontent-ai/delivery-sdk": "^14.1.0",
+		"@kontent-ai/rich-text-resolver": "^0.0.3",
+		"@rshackleton/astro-portabletext": "^0.1.0",
 		"astro": "^2.3.4",
 		"dayjs": "^1.11.7"
 	},
